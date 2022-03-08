@@ -23,6 +23,19 @@ router.get("/all", async (req, res, next) => {
   }
 });
 
+router.post("/near", async (req, res, next) => {
+  try {
+    const nearPesrons = await MissingPerson.find({
+      x: { $gte: parseInt(req.body.y) - 0.1, $lte: parseInt(req.body.x) + 0.1 },
+      y: { $gte: parseInt(req.body.y) - 0.1, $lte: parseInt(req.body.y) + 0.1 },
+    });
+    res.status(201).json(nearPesrons);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
 router.get("/", async (req, res, next) => {
   try {
     const person = await MissingPerson.findOne({ _id: req.query.id });

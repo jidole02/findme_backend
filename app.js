@@ -21,13 +21,11 @@ connect();
 
 dotenv.config();
 
-const indexRouter = require("./routes");
 const writeRouter = require("./routes/write");
 const missingRouter = require("./routes/missing");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use("/", indexRouter);
 app.use("/write", writeRouter);
 app.use("/missing", missingRouter);
 
