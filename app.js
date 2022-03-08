@@ -22,12 +22,14 @@ connect();
 dotenv.config();
 
 const indexRouter = require("./routes");
-const missingPersonRouter = require("./routes/missingPerson");
+const writeRouter = require("./routes/write");
+const missingRouter = require("./routes/missing");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/", indexRouter);
-app.use("/", missingPersonRouter);
+app.use("/write", writeRouter);
+app.use("/missing", missingRouter);
 
 app.use((req, res, next) => {
   res.status(404).send("Not Found");

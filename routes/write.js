@@ -3,7 +3,7 @@ const MissingPerson = require("../schemas/missingPerson");
 
 const router = express.Router();
 
-router.post("/write/regist", async (req, res, next) => {
+router.post("/regist", async (req, res, next) => {
   try {
     const person = await MissingPerson.create({
       name: req.body.name,
@@ -13,7 +13,6 @@ router.post("/write/regist", async (req, res, next) => {
       y: req.body.y,
       date: req.body.date,
     });
-    console.log(req.body);
     res.status(201).json(person);
   } catch (err) {
     console.log(err);
