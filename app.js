@@ -5,6 +5,7 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 const path = require("path");
 const nunjucks = require("nunjucks");
+const bodyParser = require("body-parser");
 
 const connect = require("./schemas");
 
@@ -23,6 +24,8 @@ dotenv.config();
 const indexRouter = require("./routes");
 const missingPersonRouter = require("./routes/missingPerson");
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use("/", indexRouter);
 app.use("/", missingPersonRouter);
 
