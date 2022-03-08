@@ -25,9 +25,10 @@ router.get("/all", async (req, res, next) => {
 
 router.post("/near", async (req, res, next) => {
   try {
+    console.log(req.body.x, req.body.y);
     const nearPesrons = await MissingPerson.find({
-      x: { $gte: parseInt(req.body.y) - 0.1, $lte: parseInt(req.body.x) + 0.1 },
-      y: { $gte: parseInt(req.body.y) - 0.1, $lte: parseInt(req.body.y) + 0.1 },
+      x: { $gte: parseInt(req.body.x) - 0.5, $lte: parseInt(req.body.x) + 0.5 },
+      y: { $gte: parseInt(req.body.y) - 0.5, $lte: parseInt(req.body.y) + 0.5 },
     });
     res.status(201).json(nearPesrons);
   } catch (err) {

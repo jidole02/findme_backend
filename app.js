@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const nunjucks = require("nunjucks");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const connect = require("./schemas");
 
@@ -24,6 +25,7 @@ dotenv.config();
 const writeRouter = require("./routes/write");
 const missingRouter = require("./routes/missing");
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/write", writeRouter);
