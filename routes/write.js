@@ -32,6 +32,7 @@ router.post("/regist", async (req, res, next) => {
       y: req.body.y,
       image: req.body.image,
       date: new Date(),
+      description: req.body.description,
     });
     res.status(201).json(person);
   } catch (err) {
