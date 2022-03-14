@@ -24,12 +24,16 @@ dotenv.config();
 
 const writeRouter = require("./routes/write");
 const missingRouter = require("./routes/missing");
+const imageRouter = require("./routes/image");
 
+// img로 uploads 폴더 접근 가능하도록 하는 미들웨어
+app.use("/img", express.static(path.join(__dirname, "uploads")));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/write", writeRouter);
 app.use("/missing", missingRouter);
+app.use("/image", imageRouter);
 
 app.use((req, res, next) => {
   res.status(404).send("Not Found");
