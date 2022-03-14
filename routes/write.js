@@ -21,4 +21,14 @@ router.post("/regist", async (req, res, next) => {
   }
 });
 
+router.delete("/alert", async (req, res, next) => {
+  try {
+    const person = await MissingPerson.deleteOne({ _id: req.query.id });
+    res.status(201).json(person);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
 module.exports = router;
