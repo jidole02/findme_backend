@@ -21,6 +21,9 @@ const missingPersonSchema = new Schema({
   description: {
     type: String,
   },
+  image: {
+    type: String,
+  },
   x: {
     type: Number,
     required: true,
