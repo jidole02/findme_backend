@@ -53,4 +53,16 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/search", async (req, res, next) => {
+  try {
+    const persons = await MissingPerson.find({
+      name: new RegExp(req.query.keyword),
+    });
+    res.status(201).json(persons);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
 module.exports = router;
